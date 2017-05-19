@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Sort Table </title>
+    <meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+    <link href="Style.css" rel="stylesheet" />
+    <script src="Scripts/Script.js"></script>
+</head>
+<body ng-controller="myController">
+
+    <h2>Employees of Alabama Technologies</h2>
+ <!--
+    Sort the employee data by <select ng-model="sortColumn">
+        <option value="name">Name (ASC)</option>
+        <option value="dateOfBirth">Date of Birth (ASC)</option>
+        <option value="designation">Designation (ASC)</option>
+        <option value="-salary">Salary (DESC)</option>
+    </select>
+    <br /><br /> -->
+   
+     <table>
+        <thead>
+            <tr>
+                <th ng-click="sortTable('name')">Name <div ng-class="getSortClass('name')"></div></th>
+                <th ng-click="sortTable('dateOfBirth')">Date of Birth <div ng-class="getSortClass('dateOfBirth')"></div></th>
+                <th ng-click="sortTable('designation')">Designation <div ng-class="getSortClass('designation')"></div></th>
+                <th ng-click="sortTable('gender')">Gender <div ng-class="getSortClass('gender')"></div></th>
+                <th ng-click="sortTable('salary')">Salary <div ng-class="getSortClass('salary')"></div></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="employee in employees | orderBy:sortColumn:reverseSort">
+                <td> {{employee.name}} </td>
+                <td> {{employee.dateOfBirth | date:"dd/MM/yyyy"}} </td>
+                <td> {{employee.designation}} </td>
+                <td> {{employee.gender}} </td>
+                <td> {{employee.salary | currency:"Rs.":2}} </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
